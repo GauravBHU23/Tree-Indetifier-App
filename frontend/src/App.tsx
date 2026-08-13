@@ -4,6 +4,7 @@ import ResultCard from "./components/ResultCard";
 import InstallButton from "./components/InstallButton";
 import HistoryView from "./components/HistoryView";
 import MaintenanceScreen from "./components/MaintenanceScreen";
+import Footer from "./components/Footer";
 import { identifyTree, checkHealth, type TreeDetail } from "./services/api";
 import {
   addToHistory,
@@ -45,6 +46,16 @@ export default function App() {
     runHealthCheck();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // The API runs on Azure's free tier, which sleeps when idle and takes ~15-30s
+  // to start. Rather than leaving the surveyor to press Retry, keep checking
+  // while the "waking up" screen is shown so the app opens by itself.
+  useEffect(() => {
+    if (status !== "maintenance" || !maintInfo.unreachable) return;
+    const timer = setInterval(() => { runHealthCheck(); }, 5000);
+    return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status, maintInfo.unreachable]);
 
   // Fired automatically on capture / gallery pick — no manual submit step.
   async function handleCapture(image: Blob, previewUrl: string) {
@@ -113,6 +124,7 @@ export default function App() {
           <div className="spinner" />
           <p>Loading…</p>
         </div>
+        <Footer />
       </div>
     );
   }
@@ -127,6 +139,7 @@ export default function App() {
           onRetry={runHealthCheck}
           retrying={retrying}
         />
+        <Footer />
       </div>
     );
   }
@@ -187,6 +200,8 @@ export default function App() {
           />
         )}
       </main>
+
+      <Footer />
     </div>
   );
 }

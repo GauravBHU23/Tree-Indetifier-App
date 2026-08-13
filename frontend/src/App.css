@@ -502,3 +502,39 @@ body {
 .handoff-note.handoff-warn {
   color: #b9770e;
 }
+
+/* ---- Footer ---- */
+.app-footer {
+  margin-top: 2rem;
+  padding: 1.1rem 0.5rem 0.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer-credit {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.footer-credit strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.footer-license {
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.footer-license a {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-license a:hover {
+  text-decoration: underline;
+}
