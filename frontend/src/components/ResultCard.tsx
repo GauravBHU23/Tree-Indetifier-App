@@ -1,4 +1,6 @@
+import { useState } from "react";
 import type { TreeDetail } from "../services/api";
+import { isHandoffMode, sendResult } from "../services/handoff";
 
 interface Props {
   result: TreeDetail;
@@ -22,6 +24,13 @@ const PARTS: { key: keyof TreeDetail; label: string }[] = [
 /** Shows the identified tree name plus the full botanical breakdown. */
 export default function ResultCard({ result, capturedImage, onReset }: Props) {
   const confidence = Math.round(result.confidenceScore * 100);
+  // Set when this tab was opened by the Carbon Monitoring App to fetch a species.
+  const handoff = isHandoffMode();
+  const [handoffFailed, setHandoffFailed] = useState(false);
+
+  function useThisSpecies() {
+    if (!sendResult(result)) setHandoffFailed(true);
+  }
 
   // Builds a plain-text summary for sharing / speaking.
   function buildText(): string {
@@ -76,6 +85,24 @@ export default function ResultCard({ result, capturedImage, onReset }: Props) {
           )}
         </div>
       </div>
+
+      {handoff && (
+        <div className="handoff-box">
+          <button className="handoff-btn" onClick={useThisSpecies}>
+            🌳 Use this species in Carbon App →
+          </button>
+          {handoffFailed ? (
+            <p className="handoff-note handoff-warn">
+              Couldn't reach the Carbon App tab — it may have been closed.
+              Copy the name manually: <b>{result.commonName || result.scientificName}</b>
+            </p>
+          ) : (
+            <p className="handoff-note">
+              Sends <b>{result.commonName || result.scientificName}</b> back and closes this tab.
+            </p>
+          )}
+        </div>
+      )}
 
       <div className="action-row">
         <button className="icon-btn" onClick={share}>📤 Share</button>

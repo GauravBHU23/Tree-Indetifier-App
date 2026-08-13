@@ -462,3 +462,43 @@ body {
 .history-del:hover {
   color: #e57373;
 }
+
+/* ---- Carbon App handoff ----
+   Shown only when this tab was opened by the Carbon Monitoring App
+   (?handoff=1&return=<origin>) to pick a species. */
+.handoff-box {
+  margin: 0.9rem 0 0.2rem;
+  padding: 0.85rem;
+  border: 2px dashed var(--green);
+  border-radius: 14px;
+  background: var(--tile);
+  text-align: center;
+}
+
+.handoff-btn {
+  width: 100%;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  padding: 0.85rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+
+.handoff-btn:hover {
+  filter: brightness(0.92);
+}
+
+.handoff-note {
+  margin: 0.55rem 0 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.handoff-note.handoff-warn {
+  color: #b9770e;
+}

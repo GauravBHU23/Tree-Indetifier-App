@@ -17,6 +17,30 @@ Wikipedia ko koi key nahi.
 Azure "for Students" subscription, region `southeastasia`/`eastasia`, sab **free tier** (₹0).
 Resource group: `tree-id-rg`. Redeploy ke liye niche DEPLOY.md dekho.
 
+## 🔗 Carbon App handoff
+
+Ye app **Delhi Tree Carbon Calculator** ke saath juda hua hai. Jab Carbon app ki
+species dropdown me **OTHER** chuna jaata hai, wo is app ko aise kholta hai:
+
+```
+https://green-forest-0725e4500.7.azurestaticapps.net/?handoff=1&return=<carbon-app-origin>
+```
+
+Us mode me result screen par ek extra button aata hai — **"🌳 Use this species in
+Carbon App"**. Dabate hi scanned species `postMessage` se wapas chala jaata hai
+aur ye tab band ho jaata hai; surveyor ko naam dobara type nahi karna padta.
+
+- Button **sirf** `?handoff=1&return=…` ke saath khulne par dikhta hai; normal
+  use me app bilkul pehle jaisa hai.
+- Result sirf **return origin** par bheja jaata hai (kabhi `"*"` par nahi), aur
+  origin ek allow-list se check hota hai — dekho `src/services/handoff.ts`.
+- Payload: `{ type:'tree-identified', commonName, scientificName,
+  confidenceScore, wikipediaUrl }`.
+
+Badlaav sirf do jagah: `src/services/handoff.ts` (naya) aur
+`src/components/ResultCard.tsx` (button) + thoda CSS. Live site par kaam karne ke
+liye `npm run build` + redeploy chahiye (dekho DEPLOY.md).
+
 ## ✨ Features
 - 📷 **Camera capture** + 🖼️ **Gallery upload** (dono se identify)
 - 🎯 **Top matches** — best guess + 3 aur possible matches with confidence
