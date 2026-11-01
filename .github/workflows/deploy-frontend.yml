@@ -1,5 +1,9 @@
 name: Deploy Frontend to Azure Static Web Apps
 
+# DISABLED: app now deploys to Vercel instead (see DEPLOY.md). Kept for reference
+# in case this project moves back to Azure. Trigger manually via workflow_dispatch
+# if ever needed again.
+#
 # Builds the Vite app in frontend/ and deploys it to Azure Static Web Apps.
 # Prereqs (one-time, see DEPLOY.md):
 #   - A Static Web App created in Azure
@@ -7,11 +11,6 @@ name: Deploy Frontend to Azure Static Web Apps
 #   - Repo variable VITE_API_BASE_URL              (your deployed backend URL, e.g. https://xxx.azurewebsites.net)
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "frontend/**"
-      - ".github/workflows/deploy-frontend.yml"
   workflow_dispatch:
 
 jobs:

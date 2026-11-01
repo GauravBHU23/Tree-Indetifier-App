@@ -7,15 +7,16 @@ description dikhata hai.
 **100% FREE** — PlantNet (identify) + Wikipedia (details). Sirf ek free PlantNet key chahiye,
 Wikipedia ko koi key nahi.
 
-## 🌐 Live (Azure — deployed)
+## 🌐 Live (Render + Vercel — deployed)
 
 | | URL |
 |-|-----|
-| **App (frontend)** | https://green-forest-0725e4500.7.azurestaticapps.net |
-| **API (backend)** | https://tree-id-api-1253.azurewebsites.net |
+| **App (frontend)** | _update after Vercel deploy — see DEPLOY.md_ |
+| **API (backend)** | _update after Render deploy — see DEPLOY.md_ |
 
-Azure "for Students" subscription, region `southeastasia`/`eastasia`, sab **free tier** (₹0).
-Resource group: `tree-id-rg`. Redeploy ke liye niche DEPLOY.md dekho.
+Pehle Azure "for Students" free trial pe deployed tha; trial khatam hone ke baad
+Render (backend) + Vercel (frontend) pe move kiya gaya — dono hamesha free, koi
+card ya trial expiry nahi. Deploy/redeploy steps DEPLOY.md me hain.
 
 ## 🔗 Carbon App handoff
 
@@ -23,7 +24,7 @@ Ye app **Delhi Tree Carbon Calculator** ke saath juda hua hai. Jab Carbon app ki
 species dropdown me **OTHER** chuna jaata hai, wo is app ko aise kholta hai:
 
 ```
-https://green-forest-0725e4500.7.azurestaticapps.net/?handoff=1&return=<carbon-app-origin>
+https://<this-app-frontend>.vercel.app/?handoff=1&return=<carbon-app-origin>
 ```
 
 Us mode me result screen par ek extra button aata hai — **"🌳 Use this species in

@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: tree-id-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    envVars:
+      - key: Api__PlantNet__ApiKey
+        sync: false
+      - key: Cors__AllowedOrigins__0
+        sync: false

@@ -1,5 +1,9 @@
 name: Deploy Backend to Azure App Service
 
+# DISABLED: app now deploys to Render instead (see DEPLOY.md). Kept for reference
+# in case this project moves back to Azure. Trigger manually via workflow_dispatch
+# if ever needed again.
+#
 # Deploys the .NET API in backend/ to an Azure App Service.
 # Prereqs (one-time, see DEPLOY.md):
 #   - An App Service (Linux, .NET 8) created in Azure
@@ -7,11 +11,6 @@ name: Deploy Backend to Azure App Service
 #   - Repo variable AZURE_WEBAPP_NAME           (your App Service name)
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "backend/**"
-      - ".github/workflows/deploy-backend.yml"
   workflow_dispatch:
 
 jobs:
