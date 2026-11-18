@@ -12,7 +12,7 @@ export default function Footer() {
       <p className="footer-license">
         Released under the{" "}
         <a
-          href="https://opensource.org/licenses/MIT"
+          href="https://github.com/GauravBHU23/Tree-Indetifier-App/blob/main/LICENSE"
           target="_blank"
           rel="noopener noreferrer"
         >
